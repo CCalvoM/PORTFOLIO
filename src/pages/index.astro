@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { client } from "../config/client.config";
+---
+
+<BaseLayout title={`${client.brand.name} | Portfolio`} description={client.hero.subheadline}>
+  <Header />
+  <main>
+    <Hero />
+
+    <section id="projects" class="section">
+      <div class="container" style="display:grid; gap: 14px;">
+        <div>
+          <h2>Proyectos</h2>
+          <p class="muted" style="margin:0;">Selección corta. Pocos pero con intención.</p>
+        </div>
+
+        <div style="display:grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+          {client.projects.map((p) => (
+            <ProjectCard title={p.title} description={p.description} tags={p.tags} href={p.href} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card" style="padding: 22px; display:flex; justify-content:space-between; gap: 16px; flex-wrap:wrap; align-items:center;">
+          <div>
+            <h2 style="margin:0 0 6px;">¿Quieres esta misma web para tu negocio?</h2>
+            <p class="muted" style="margin:0;">Esta web es la demo del “modelo genérico” que luego se clona por cliente.</p>
+          </div>
+          <a class="btn primary" href="#contact">Pedir una versión</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container" style="display:grid; gap: 14px;">
+        <h2>{client.contact.title}</h2>
+        <p class="muted" style="margin:0; max-width: 75ch;">{client.contact.text}</p>
+
+        <div style="display:flex; gap: 12px; flex-wrap:wrap; padding-top: 8px;">
+          <a class="btn primary" href={client.links.email}>Email</a>
+          <a class="btn" href={client.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href={client.links.github} target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

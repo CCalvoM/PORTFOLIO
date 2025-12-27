@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Web portfolio where I showcase my projects, skills, and work as a Front-End / Full-Stack developer. Includes real-world projects, side projects, and technical experiments.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CCalvoM/PORTFOLIO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CCalvoM/PORTFOLIO/issues"
+  },
+  "homepage": "https://github.com/CCalvoM/PORTFOLIO#readme",
+  "dependencies": {
+    "astro": "^5.16.6"
+  }
+}

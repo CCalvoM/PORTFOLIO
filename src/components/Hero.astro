@@ -1,0 +1,26 @@
+---
+import { client } from "../config/client.config";
+---
+
+<section class="section">
+  <div class="container">
+    <div class="card" style="padding: 28px; display:grid; gap: 16px;">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        {client.hero.badges.map((b) => <span class="pill">{b}</span>)}
+      </div>
+
+      <h1 style="margin:0; font-size: 40px; letter-spacing:-0.03em; line-height:1.1;">
+        {client.hero.headline}
+      </h1>
+
+      <p class="muted" style="margin:0; font-size:16px; max-width: 70ch;">
+        {client.hero.subheadline}
+      </p>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; padding-top: 8px;">
+        <a class="btn primary" href={client.hero.ctaPrimary.href}>{client.hero.ctaPrimary.label}</a>
+        <a class="btn" href={client.hero.ctaSecondary.href}>{client.hero.ctaSecondary.label}</a>
+      </div>
+    </div>
+  </div>
+</section>
