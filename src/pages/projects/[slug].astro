@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { client } from "../../config/client.config";
+
+export function getStaticPaths() {
+  return client.projects.map((p) => ({
+    params: { slug: p.slug },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} | ${client.brand.name}`} description={project.description}>
+  <Header />
+
+  <main class="section">
+    <div class="container" style="display:grid; gap: 18px;">
+      <a class="muted" href="/projects" style="font-size:14px;">← Volver a proyectos</a>
+
+      <div class="card" style="padding: 22px; display:grid; gap: 10px;">
+        <h1 style="margin:0; font-size: 30px; letter-spacing:-0.02em;">{project.title}</h1>
+        <p class="muted" style="margin:0; line-height:1.6;">{project.description}</p>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap; padding-top: 6px;">
+          {project.tags.map((t) => <span class="pill">{t}</span>)}
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; padding-top: 10px;">
+          {project.repo ? <a class="btn" href={project.repo} target="_blank" rel="noreferrer">Repo</a> : null}
+          {project.live ? <a class="btn primary" href={project.live} target="_blank" rel="noreferrer">Live</a> : null}
+        </div>
+      </div>
+
+      <div class="card" style="padding: 22px; display:grid; gap: 14px;">
+        <h2 style="margin:0; font-size: 20px;">Highlights</h2>
+        <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.7;">
+          {project.highlights?.map((h) => <li>{h}</li>)}
+        </ul>
+
+        {project.stack?.length ? (
+          <div style="display:grid; gap:8px;">
+            <h3 style="margin:0; font-size: 16px;">Stack</h3>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              {project.stack.map((s) => <span class="pill">{s}</span>)}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

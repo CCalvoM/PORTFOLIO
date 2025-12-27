@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { client } from "../../config/client.config";
+---
+
+<BaseLayout title={`Proyectos | ${client.brand.name}`} description="Proyectos y casos de uso.">
+  <Header />
+
+  <main class="section">
+    <div class="container" style="display:grid; gap:14px;">
+      <div>
+        <h1 style="margin:0; font-size:32px; letter-spacing:-0.02em;">Proyectos</h1>
+        <p class="muted" style="margin:8px 0 0;">Una selección con contexto y detalle.</p>
+      </div>
+
+      <div style="display:grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        {client.projects.map((p) => (
+          <ProjectCard title={p.title} description={p.description} tags={[...p.tags]} href={p.href} />
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

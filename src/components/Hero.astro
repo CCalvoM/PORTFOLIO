@@ -1,26 +1,67 @@
 ---
 import { client } from "../config/client.config";
+
+const stats = [
+  { label: "Stack", value: "Angular · TS · AWS" },
+  { label: "Focus", value: "Performance · DX · UI" },
+  { label: "Plantilla", value: "Astro modular vendible" },
+];
 ---
 
 <section class="section">
   <div class="container">
-    <div class="card" style="padding: 28px; display:grid; gap: 16px;">
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        {client.hero.badges.map((b) => <span class="pill">{b}</span>)}
+    <div style="display:grid; gap: 14px; grid-template-columns: 1.35fr .65fr; align-items: stretch;">
+      <!-- Left: main hero -->
+      <div class="card" style="padding: 28px; display:grid; gap: 16px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          {client.hero.badges.map((b) => <span class="pill">{b}</span>)}
+        </div>
+
+        <h1 style="margin:0; font-size: 44px; letter-spacing:-0.03em; line-height:1.06;">
+          {client.hero.headline}
+        </h1>
+
+        <p class="muted" style="margin:0; font-size:16px; max-width: 72ch; line-height:1.6;">
+          {client.hero.subheadline}
+        </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; padding-top: 6px;">
+          <a class="btn primary" href={client.hero.ctaPrimary.href}>{client.hero.ctaPrimary.label}</a>
+          <a class="btn" href={client.hero.ctaSecondary.href}>{client.hero.ctaSecondary.label}</a>
+          <a class="btn" href="/projects">Todos los proyectos</a>
+        </div>
       </div>
 
-      <h1 style="margin:0; font-size: 40px; letter-spacing:-0.03em; line-height:1.1;">
-        {client.hero.headline}
-      </h1>
+      <!-- Right: side panel -->
+      <aside class="card" style="padding: 18px; display:grid; gap: 12px;">
+        <div style="display:flex; justify-content:space-between; gap: 12px; align-items:flex-start;">
+          <div>
+            <div class="muted" style="font-size:12px;">{client.brand.location}</div>
+            <div style="font-weight:700; margin-top: 2px;">{client.brand.role}</div>
+          </div>
+          <span class="pill">Disponible</span>
+        </div>
 
-      <p class="muted" style="margin:0; font-size:16px; max-width: 70ch;">
-        {client.hero.subheadline}
-      </p>
+        <div style="display:grid; gap: 10px;">
+          {stats.map((s) => (
+            <div style="padding: 12px; border-radius: 14px; border: 1px solid rgba(148,163,184,.14); background: rgba(255,255,255,.03);">
+              <div class="muted" style="font-size: 12px;">{s.label}</div>
+              <div style="margin-top: 2px; font-size: 14px;">{s.value}</div>
+            </div>
+          ))}
+        </div>
 
-      <div style="display:flex; gap:12px; flex-wrap:wrap; padding-top: 8px;">
-        <a class="btn primary" href={client.hero.ctaPrimary.href}>{client.hero.ctaPrimary.label}</a>
-        <a class="btn" href={client.hero.ctaSecondary.href}>{client.hero.ctaSecondary.label}</a>
-      </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; padding-top: 6px;">
+          <a class="btn" href={client.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href={client.links.github} target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </aside>
     </div>
+
+    <style>
+      @media (max-width: 860px){
+        section > .container > div { grid-template-columns: 1fr; }
+      }
+    </style>
   </div>
 </section>
