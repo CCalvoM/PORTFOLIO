@@ -1,0 +1,14 @@
+---
+import { client } from "../config/client.config";
+const year = new Date().getFullYear();
+---
+
+<footer style="border-top:1px solid rgba(148,163,184,.12); padding: 28px 0; margin-top: 40px;">
+  <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+    <span class="muted">© {year} {client.brand.name}</span>
+    <div style="display:flex; gap:14px;">
+      <a class="muted" href={client.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+      <a class="muted" href={client.links.email}>Email</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,24 @@
+---
+type Props = {
+  title: string;
+  description: string;
+  tags: string[];
+  href?: string;
+};
+const { title, description, tags, href } = Astro.props;
+---
+
+<article class="card" style="padding: 18px; display:grid; gap: 10px;">
+  <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px;">
+    <h3 style="margin:0; font-size: 18px;">{title}</h3>
+    {href ? <a class="muted" style="font-size:13px;" href={href}>Ver →</a> : null}
+  </div>
+
+  <p class="muted" style="margin:0; font-size:14px; line-height:1.5;">
+    {description}
+  </p>
+
+  <div style="display:flex; gap:8px; flex-wrap:wrap; padding-top: 6px;">
+    {tags.map((t) => <span class="pill">{t}</span>)}
+  </div>
+</article>
